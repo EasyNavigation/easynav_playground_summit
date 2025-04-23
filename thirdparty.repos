@@ -1,0 +1,17 @@
+repositories:
+  ThirdParty/worlds/urjc-excavation-world:
+    type: git
+    url: https://github.com/juanscelyg/urjc-excavation-world.git
+    version: main
+  ThirdParty/robots/summit/robot_description:
+    type: git
+    url: https://github.com/Summit-Harmonic/robot_description.git
+    version: ros2-devel
+  ThirdParty/robots/summit/robotnik_sensors:
+    type: git
+    url: https://github.com/Summit-Harmonic/robotnik_sensors.git
+    version: ros2-devel
+  ThirdParty/robots/summit/summit_simulator:
+    type: git
+    url: https://github.com/Summit-Harmonic/summit_simulator.git
+    version: main
