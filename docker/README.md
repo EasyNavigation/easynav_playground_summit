@@ -38,6 +38,8 @@ docker run -it --rm \
   -e DISPLAY=$DISPLAY \
   --device /dev/dri \
   --name playground_summit \
+  --gpus all \
+  -e ROS_DOMAIN_ID=$ROS_DOMAIN_ID \
   easynav_playground:summit_jazzy
  
 xhost -local:docker
