@@ -10,16 +10,16 @@ sudo docker build -t easynav_playground:summit_jazzy .
 
 ## Usage
 
-### Option A: using the script `run_docker.sh`
+### Option A: using the script `launch.sh`
  
 The first time Grant execute permissions to the script:
 ```bash
-chmod +x run_docker.sh
+chmod +x launch.sh
 ```
  
 Execute: 
 ```bash
-./run_docker.sh
+sudo ./launch.sh
 ```
  
 This script:
