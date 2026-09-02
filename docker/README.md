@@ -11,17 +11,19 @@ sudo docker build -t easynav_playground:summit_jazzy .
 ## Usage
 
 ### Option A: using the script `launch.sh`
- 
+
 The first time Grant execute permissions to the script:
 ```bash
 chmod +x launch.sh
 ```
- 
-Execute: 
+
+Execute:
+We can launch the docker with different options. --auto or alone and the script will detect the graphic server, --wayland if you have wayland in your computer or --x11.
+
 ```bash
-sudo ./launch.sh
+./launch.sh --auto
 ```
- 
+
 This script:
 
 - Temporarily allows the Docker the access to the graphic server  (`xhost +local:docker`).
@@ -29,7 +31,7 @@ This script:
 - When exiting Docker, revoke access to the graphical server.
 
 ### Option B: in our terminal
- 
+
 ```bash
 xhost +local:docker
  
@@ -43,4 +45,11 @@ docker run -it --rm \
   easynav_playground:summit_jazzy
  
 xhost -local:docker
+```
+### Troubleshooting
+In case of using wayland instead of x11 we may need to export the following:
+```bash
+export __NV_PRIME_RENDER_OFFLOAD=1
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export __VK_LAYER_NV_optimus=NVIDIA_only
 ```
