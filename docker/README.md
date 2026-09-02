@@ -36,13 +36,17 @@ This script:
 xhost +local:docker
  
 docker run -it --rm \
-  --net=host \
-  -e DISPLAY=$DISPLAY \
-  --device /dev/dri \
-  --name playground_summit \
-  --gpus all \
-  -e ROS_DOMAIN_ID=$ROS_DOMAIN_ID \
-  easynav_playground:summit_jazzy
+    --net=host \
+    -e DISPLAY=$DISPLAY \
+    -e NVIDIA_VISIBLE_DEVICES=all \
+    -e NVIDIA_DRIVER_CAPABILITIES=all \
+    -e QT_X11_NO_MITSHM=1 \
+    -e XDG_RUNTIME_DIR=/tmp/runtime-root \
+    --device /dev/dri \
+    --name playground_summits \
+    --gpus all \
+    -e ROS_DOMAIN_ID=$ROS_DOMAIN_ID \
+    "$IMAGE_NAME"
  
 xhost -local:docker
 ```

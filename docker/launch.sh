@@ -48,11 +48,14 @@ xhost +local:docker
 docker run -it --rm \
     --net=host \
     -e DISPLAY=$DISPLAY \
+    -e NVIDIA_VISIBLE_DEVICES=all \
+    -e NVIDIA_DRIVER_CAPABILITIES=all \
+    -e QT_X11_NO_MITSHM=1 \
+    -e XDG_RUNTIME_DIR=/tmp/runtime-root \
     --device /dev/dri \
     --name "$CONTAINER_NAME" \
     --gpus all \
     -e ROS_DOMAIN_ID=$ROS_DOMAIN_ID \
-    "${GPU_ENV_FLAGS[@]}" \
     "$IMAGE_NAME"
 
 
