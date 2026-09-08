@@ -5,7 +5,7 @@ This repository contains the 'Dockerfile' to use SummitXL playground, the image 
 ## Instalation
 
 ```bash
-cd <easynav-playground_kobuki>/docker/
+cd <easynav-playground_summit>/docker/
 
 sudo docker build -t easynav_playground:summit_jazzy .
 ```
@@ -16,7 +16,7 @@ sudo docker build -t easynav_playground:summit_jazzy .
 
 The first time Grant execute permissions to the script:
 ```bash
-cd <easynav-playground_kobuki>/docker/
+cd <easynav-playground_summit>/docker/
 
 chmod +x launch.sh
 ```
@@ -25,7 +25,7 @@ Execute:
 We can launch the docker with different options. --auto or alone and the script will detect the graphic server, --wayland if you have wayland in your computer or --x11.
 
 ```bash
-cd <easynav-playground_kobuki>/docker/
+cd <easynav-playground_summit>/docker/
 
 ./launch.sh --auto
 ```
@@ -39,7 +39,7 @@ This script:
 ### Option B: in our terminal
 
 ```bash
-cd <easynav-playground_kobuki>/docker/
+cd <easynav-playground_summit>/docker/
 
 xhost +local:docker
  
