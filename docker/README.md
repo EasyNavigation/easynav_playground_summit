@@ -5,7 +5,9 @@ This repository contains the 'Dockerfile' to use SummitXL playground, the image 
 ## Instalation
 
 ```bash
-sudo docker build -t easynav_playground:summit_rolling .
+cd <easynav-playground_summit>/docker/
+
+docker build -t easynav_playground:summit_rolling .
 ```
 
 ## Usage
@@ -14,12 +16,18 @@ sudo docker build -t easynav_playground:summit_rolling .
  
 The first time Grant execute permissions to the script:
 ```bash
+cd <easynav-playground_summit>/docker/
+
 chmod +x launch.sh
 ```
  
-Execute: 
+Execute:
+
+We can launch the docker with different options. --auto or alone and the script will detect the graphic server, --wayland if you have wayland in your computer or --x11.
 ```bash
-sudo ./launch.sh
+cd <easynav-playground_summit>/docker/
+
+./launch.sh
 ```
  
 This script:
@@ -31,6 +39,8 @@ This script:
 ### Option B: in our terminal
  
 ```bash
+cd <easynav-playground_summit>/docker/
+
 xhost +local:docker
  
 docker run -it --rm \
