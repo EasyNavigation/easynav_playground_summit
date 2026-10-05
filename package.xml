@@ -3,13 +3,15 @@
 <package format="3">
   <name>easynav_playground_summit</name>
   <version>0.0.1</version>
-  <description>Easy Navigation: Gazebo playground with a Summit XL in the URJC excavation, self-contained.</description>
+  <description>Easy Navigation: Gazebo playground with a Summit XL in the URJC excavation and a warehouse, self-contained.</description>
   <maintainer email="jc.manzanares.serrano@gmail.com">Juan Carlos Manzanares Serrano</maintainer>
   <license file="LICENSE">Apache-2.0</license>
   <!-- Summit XL model (urdf/, meshes/, config/), from robot_description and robotnik_sensors -->
   <license file="LICENSE-BSD">BSD-3-Clause</license>
-  <!-- URJC excavation world (worlds/, models/), from urjc-excavation-world -->
-  <license file="models/LICENSE">GPL-3.0-only</license>
+  <!-- URJC excavation world (worlds/urjc_excavation.world, models/urjc_excavation/) -->
+  <license file="models/urjc_excavation/LICENSE">GPL-3.0-only</license>
+  <!-- AWS RoboMaker small warehouse (worlds/small_warehouse.world, models/aws_robomaker_*) -->
+  <license file="models/LICENSE-aws-robomaker">MIT-0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
@@ -28,6 +30,12 @@
   <exec_depend>rviz2</exec_depend>
   <exec_depend>tf2_ros</exec_depend>
   <exec_depend>navmap_rviz_plugin</exec_depend>
+  <!-- Map building scripts -->
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>sensor_msgs_py</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
 
   <exec_depend>easynav_system</exec_depend>
   <exec_depend>easynav_regulated_pp_controller</exec_depend>
