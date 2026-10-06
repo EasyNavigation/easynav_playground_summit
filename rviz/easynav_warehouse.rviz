@@ -9,9 +9,11 @@ Panels:
         - /TF1/Frames1
         - /Path1
         - /NavMapDisplay1
-        - /NavMapDisplay1/Status1
+        - /PointCloud21
+        - /PointCloud21/Status1
+        - /PointCloud21/Topic1
       Splitter Ratio: 0.5
-    Tree Height: 598
+    Tree Height: 948
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
@@ -315,6 +317,40 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /maps_manager_node/navmap/map_updates
       Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 6.7789998054504395
+        Min Value: -0.027000000700354576
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: AxisColor
+      Decay Time: 0
+      Enabled: false
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: PointCloud2
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.05000000074505806
+      Style: Boxes
+      Topic:
+        Depth: 5
+        Durability Policy: Transient Local
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /maps_manager_node/bonxai/map
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -368,33 +404,33 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 36.8255500793457
+      Distance: 22.346153259277344
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 10.170737266540527
-        Y: -5.215634822845459
-        Z: 3.968412160873413
+        X: 1.5751569271087646
+        Y: 2.7617931365966797
+        Z: 3.7132182121276855
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5553982257843018
+      Pitch: 0.9953984618186951
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.965395212173462
+      Yaw: 0.7572029829025269
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 846
+  Height: 1180
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000001b0000002eafc0200000005fb000000100044006900730070006c0061007900730100000042000002ea000000d200fffffffb0000001200530065006c0065006300740069006f006e000000018d0000009d0000006000fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007300000001ea000000cb0000006000fffffffb0000000a005600690065007700730000000232000000b2000000b200fffffffb0000000800540069006d0065000000028f0000009d0000004200ffffff000002fa000002ea00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000100000000000001b000000440fc0200000005fb000000100044006900730070006c006100790073010000003e00000440000000ca00fffffffb0000001200530065006c0065006300740069006f006e000000018d0000009d0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007300000001ea000000cb0000005c00fffffffb0000000a005600690065007700730000000232000000b2000000a600fffffffb0000000800540069006d0065000000028f0000009d0000003a00ffffff000007590000044000000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -403,6 +439,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1200
-  X: 1068
-  Y: 157
+  Width: 2319
+  X: 234
+  Y: 146

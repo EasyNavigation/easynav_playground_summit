@@ -133,7 +133,9 @@ maps_manager_node:
       plugin: easynav_navmap_maps_manager/NavMapMapsManager
       package: easynav_playground_summit
       # Flat NavMap built from the 2D map (both maps come from the same simulated scans)
-      occmap_path_file: maps/warehouse.yaml
+      # 20 cm cells (navmap_tools navmap_resample from maps/warehouse.yaml, 5 cm): 16 times fewer
+      # NavCels, so the filters and the AMCL keep up with their cycles.
+      navmap_path_file: maps/warehouse_20cm.navmap
       filters: [obstacles, inflation]
       obstacles:
         plugin: easynav_navmap_maps_manager/NavMapMapsManager/ObstaclesFilter
