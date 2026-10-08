@@ -141,6 +141,9 @@ maps_manager_node:
       filters: [obstacles, inflation]
       obstacles:
         plugin: easynav_navmap_maps_manager/NavMapMapsManager/ObstaclesFilter
+        max_range: 5.0              # rough terrain: farther, a small tilt error lifts the ground
+        min_height: 0.3             # above the NavMap surface: the mesh, the terrain and the localization differ
+        min_height_per_meter: 0.05  # +0.05 m per meter from the robot (about 3 deg of tilt error)
       # Cells within robot_geometry.inscribed_radius are blocked; up to inflation_radius the cost
       # keeps paths away from obstacles (and from the map borders).
       inflation:

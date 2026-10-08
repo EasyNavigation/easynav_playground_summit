@@ -18,11 +18,4 @@ install(DIRECTORY
 
 install(FILES LICENSE LICENSE-BSD DESTINATION share/${PROJECT_NAME})
 
-# Map building tools (ros2 run easynav_playground_summit <script>)
-install(PROGRAMS
-  scripts/map_builder.py
-  scripts/map2d_from_pcd.py
-  DESTINATION lib/${PROJECT_NAME}
-)
-
 ament_package()

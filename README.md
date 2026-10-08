@@ -7,6 +7,10 @@ SPDX-License-Identifier: Apache-2.0
 
 Gazebo Harmonic simulation of a Robotnik Summit XL integrated with EasyNav and NavMap, in two worlds: the URJC excavation, an outdoor 3D terrain, and a small indoor warehouse. The package is self-contained: the robot model, the worlds, the maps and the EasyNav configurations are all included, so you only need this package plus EasyNav (core and plugins) and NavMap.
 
+## Supported ROS 2 distributions
+
+This playground needs Gazebo Harmonic or newer, so it runs on Jazzy and later distributions, but not on Humble, whose Gazebo is Fortress. EasyNav itself (core and plugins) does run on Humble: only this simulation does not.
+
 ## Build
 
 From the ROS 2 workspace root:
@@ -101,21 +105,22 @@ It also publishes TF, and listens on `/cmd_vel` (`geometry_msgs/Twist`). `twist_
 
 ## Building the warehouse maps
 
-The warehouse maps were generated from the simulation with the two scripts in `scripts/`, installed with the package:
+The warehouse maps were generated from the simulation with two tools of NavMap's `navmap_tools`:
 
-1. `map_builder.py` builds the 3D cloud (`warehouse.pcd`, for Bonxai). It teleports the robot through the free space (`gz service .../set_pose`) and puts its lidar scans together at the ground-truth poses: a new position is taken when ground was seen around it and no obstacle is within `--clearance`.
-2. `map2d_from_pcd.py` builds the 2D occupancy grid (`warehouse.pgm`/`.yaml`, for the flat NavMap) from that cloud: points between 0.1 and 1.2 m high are obstacles, free space is flood-filled from a seed inside the walls, and the rest is unknown.
+1. `navmap_map_builder` builds the 3D cloud (`warehouse.pcd`, for Bonxai). It teleports the robot through the free space (`gz service .../set_pose`) and puts its lidar scans together at the ground-truth poses: a new position is taken when ground was seen around it and no obstacle is within `--clearance`.
+2. `navmap_map2d_from_pcd` builds the 2D occupancy grid (`warehouse.pgm`/`.yaml`, for the flat NavMap) from that cloud: points between 0.1 and 1.2 m high are obstacles, free space is flood-filled from a seed inside the walls, and the rest is unknown.
 
-To regenerate them (or build maps of another world), start the simulation without EasyNav and run the scripts:
+To regenerate them (or build maps of another world), start the simulation without EasyNav and run the tools:
 
 ```bash
 ros2 launch easynav_playground_summit gazebo_sim.launch.yaml gui:=false \
   world:=$(ros2 pkg prefix easynav_playground_summit)/share/easynav_playground_summit/worlds/small_warehouse.world
-ros2 run easynav_playground_summit map_builder.py /tmp/warehouse --world warehouse
-ros2 run easynav_playground_summit map2d_from_pcd.py /tmp/warehouse.pcd /tmp/warehouse
+ros2 run navmap_tools navmap_map_builder /tmp/warehouse --world warehouse --model summit_xl \
+  --cloud-topic /front_laser/points --ground-truth-topic /ground_truth
+ros2 run navmap_tools navmap_map2d_from_pcd /tmp/warehouse.pcd /tmp/warehouse
 ```
 
-Then copy `warehouse.pcd`, `warehouse.pgm` and `warehouse.yaml` to `maps/`. Run each script with `--help` for its options (seed, resolution, height band, topics).
+Then copy `warehouse.pcd`, `warehouse.pgm` and `warehouse.yaml` to `maps/`. Run each tool with `--help` for its options (seed, resolution, height band, topics, headings).
 
 ## Package layout
 
@@ -128,7 +133,6 @@ Then copy `warehouse.pcd`, `warehouse.pgm` and `warehouse.yaml` to `maps/`. Run 
 | `config/` | ros2_control controllers and ROS–Gazebo bridge topics |
 | `urdf/`, `meshes/` | Summit XL model |
 | `worlds/`, `models/` | URJC excavation and small warehouse worlds |
-| `scripts/` | Map building tools (`map_builder.py`, `map2d_from_pcd.py`) |
 
 ## Attribution and licensing
 
@@ -137,7 +141,7 @@ This package is licensed under Apache-2.0; see [LICENSE](./LICENSE). It includes
 - The Summit XL model (`urdf/`, `meshes/`, `config/`) comes from [robot_description](https://github.com/Summit-Harmonic/robot_description) and [robotnik_sensors](https://github.com/Summit-Harmonic/robotnik_sensors) (`ros2-devel` branch), under the BSD 3-Clause license; see [LICENSE-BSD](./LICENSE-BSD).
 - The URJC excavation world (`worlds/urjc_excavation.world`, `models/urjc_excavation/`) comes from [urjc-excavation-world](https://github.com/juanscelyg/urjc-excavation-world) (`main` branch). Its license file is GPL-3.0; see [models/urjc_excavation/LICENSE](./models/urjc_excavation/LICENSE).
 - The small warehouse world (`worlds/small_warehouse.world`, `models/aws_robomaker_warehouse_*`) comes from [aws-robomaker-small-warehouse-world](https://github.com/aws-robotics/aws-robomaker-small-warehouse-world) (`ros1` branch), under the MIT-0 license; see [models/LICENSE-aws-robomaker](./models/LICENSE-aws-robomaker). Changes for Gazebo Sim: the roof was removed (the lidar and the GUI camera see inside), the Gazebo Sim system plugins, spherical coordinates and a sun were added, the physics step is 5 ms, and the floor model's (`GroundB`) invalid inertia was fixed.
-- The warehouse maps (`maps/warehouse.*`) were generated from that world with the scripts in `scripts/` (see "Building the warehouse maps").
+- The warehouse maps (`maps/warehouse.*`) were generated from that world with `navmap_tools` (see "Building the warehouse maps").
 
 Only the files these simulations use were copied. Changes to the robot model, all for the simulation:
 
