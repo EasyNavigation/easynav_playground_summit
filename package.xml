@@ -3,14 +3,50 @@
 <package format="3">
   <name>easynav_playground_summit</name>
   <version>0.0.1</version>
-  <description>Easy Navigation: Playground Summit.</description>
+  <description>Easy Navigation: Gazebo playground with a Summit XL in the URJC excavation and a warehouse, self-contained.</description>
   <maintainer email="jc.manzanares.serrano@gmail.com">Juan Carlos Manzanares Serrano</maintainer>
-  <license>GPL-3.0-only</license>
+  <license file="LICENSE">Apache-2.0</license>
+  <!-- Summit XL model (urdf/, meshes/, config/), from robot_description and robotnik_sensors -->
+  <license file="LICENSE-BSD">BSD-3-Clause</license>
+  <!-- URJC excavation world (worlds/urjc_excavation.world, models/urjc_excavation/) -->
+  <license file="models/urjc_excavation/LICENSE">GPL-3.0-only</license>
+  <!-- AWS RoboMaker small warehouse (worlds/small_warehouse.world, models/aws_robomaker_*) -->
+  <license file="models/LICENSE-aws-robomaker">MIT-0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <exec_depend>summit_simulator</exec_depend>
-  <exec_depend>urjc_excavation_world</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>launch_yaml</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>ros_gz_sim</exec_depend>
+  <exec_depend>ros_gz_bridge</exec_depend>
+  <exec_depend>gz_ros2_control</exec_depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>diff_drive_controller</exec_depend>
+  <exec_depend>joint_state_broadcaster</exec_depend>
+  <exec_depend>twist_stamper</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>navmap_rviz_plugin</exec_depend>
+  <!-- Map building scripts -->
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>sensor_msgs_py</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
+
+  <exec_depend>easynav_system</exec_depend>
+  <exec_depend>easynav_regulated_pp_controller</exec_depend>
+  <exec_depend>easynav_mppi_controller</exec_depend>
+  <exec_depend>easynav_mpc_controller</exec_depend>
+  <exec_depend>easynav_fusion_localizer</exec_depend>
+  <exec_depend>easynav_navmap_localizer</exec_depend>
+  <exec_depend>easynav_navmap_maps_manager</exec_depend>
+  <exec_depend>easynav_bonxai_maps_manager</exec_depend>
+  <exec_depend>easynav_navmap_planner</exec_depend>
+  <exec_depend>easynav_diagnostic_recovery</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
